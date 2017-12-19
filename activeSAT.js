@@ -67,21 +67,6 @@ function logOut(data)
 
 function setup()
 {
-	
-	//////////////////////////////////////////////////////
-	//Checking a random satData each refresh CONSOLE LOG ONLY
-	// var ran = Math.floor((Math.random() * 1459) + 1)
-	// console.log(ran);
-	// console.log(satName[ran]);
-	// console.log(satCountry[ran]);
-	// console.log(satPurp[ran]);
-	// console.log(satOrb[ran]);
-	// console.log(satMass[ran]);
-	// console.log(satDate[ran]);
-	// console.log(satVehicle[ran]);
-	// console.log(satUser[ran]);
-	//////////////////////////////////////////////////////////
-
 	//create canvas
 
 	createCanvas(wW, wH);
@@ -142,6 +127,7 @@ function draw()
 			{
 				sats[i].hideInfo();
 			}
+
 		}
 		
 		else 
@@ -151,6 +137,8 @@ function draw()
 
 		sats[i].update();
 	}
+
+	filterInfo();
 
 }
 
@@ -237,63 +225,7 @@ function SaT(x, y, nm, ct, pr, ob, ma, dt, vh, ur, count)
 
   this.radius = (this.mass * 0.005) + 10;
 
-  // if(this.mass <  10)
-  // {
-  // 	this.radius = 7;
-  // }
-  // else if(this.mass > 10 && this.mass < 100)
-  // {
-  // 	this.radius = random(8,12);
-  // }
-  // else if(this.mass > 100 && this.mass < 1000)
-  // {
-  // 	this.radius = random(13,18);
-  // }
-  // else if(this.mass > 1000 && this.mass < 4999)
-  // {
-  // 	this.radius = random(19,23)
-  // }
-  // else if(this.mass > 5000)
-  // {
-  // 	this.radius = 28;
-  // }
-  // else
-  // {
-  // 	this.radius = random(8,14);
-  // }
 
-  ////////////////////////////////////////////////////////////////////
-  //Defining the outline of the object based on the Purpose
-  ////////////////////////////////////////////////////////////////////
-
-  // if(this.purpose == "Communications")
-  // {
-
-  // }  
-
-  // else if(this.purpose == "Earth Observation")
-  // {
-
-  // }
-
-  // else if(this.purpose == "Technology Development")
-  // {
-  	
-  // }
-
-  // else if(this.purpose == "Space Science")
-  // {
-  	
-  // }
-
-  // else if(this.purpose == "Navigation/Global Positioning")
-  // {
-  	
-  // }
-
-
-  //Cmmunications, Technology Development, Earth Observation, Navigation/Global Positioning, Space Science, 
-  
    /////////Drawing the sats on the display////////////////
 
   this.display = function() 
@@ -314,7 +246,6 @@ function SaT(x, y, nm, ct, pr, ob, ma, dt, vh, ur, count)
     fill(this.col);
     ellipse(this.x, this.y, this.radius, this.radius);
 
-    filterInfo();
   }
 
   ////////Changing the Info Box and the Highlight Stroke/////////////////
@@ -344,7 +275,7 @@ function SaT(x, y, nm, ct, pr, ob, ma, dt, vh, ur, count)
   {
   	if(this.selected == false)				//movement for when the object is not hovered over
   	{
-  		this.x += 0.4;
+  		this.x += random(0.4,0.8);
   		this.y += random(-0.1,0.5);
   	}
 
@@ -393,7 +324,7 @@ function infoManip(j)
 	purpose.innerHTML = satPurp[j];
 	user.innerHTML = satUser[j];
 	orbit.innerHTML = satOrb[j];
-	lmass.innerHTML = satMass[j];
+	lmass.innerHTML = satMass[j] + " kg";
 	lDate.innerHTML = satDate[j];
 	lVehicle.innerHTML = satVehicle[j]; 
 
@@ -431,46 +362,6 @@ function showAll()
 
 function showUSA()
 {
-	//Looking back this method was stupid, good thing I stopped before, I had a lot more filters
-	//Leaving it here so I don't make that mistake again
-
-	// if(showCountry == "all")
-	// {
-	// 	showCountry = "USA";
-	// }
-	// else if(showCountry == "USA")
-	// {
-	// 	showCountry = "USA";
-	// }
-	// else if(showCountry == "Russia")
-	// {
-	// 	showCountry = "USA";
-	// }
-	// else if(showCountry == "China")
-	// {
-	// 	showCountry = "USA";
-	// }
-	// else if(showCountry == "Japan")
-	// {
-	// 	showCountry = "USA";
-	// }
-	// else if(showCountry == "Multinational")
-	// {
-	// 	showCountry = "USA";
-	// }
-	// else if(showCountry == "United Kingdom")
-	// {
-	// 	showCountry = "USA";
-	// }
-	// else if(showCountry == "Canada")
-	// {
-	// 	showCountry = "USA";
-	// }
-	// else if(showCountry == "ESA")
-	// {
-	// 	showCountry = "USA";
-	// }
-
 	showCountry = "USA";
 }
 
@@ -568,27 +459,3 @@ function showGEO()
 {
 	showOrb = "GEO";
 }
-
-
-// function showCiv()
-// {
-
-// }
-
-
-// function showCom()
-// {
-	
-// }
-
-
-// function showMil()
-// {
-	
-// }
-
-
-// function showGov()
-// {
-	
-// }
